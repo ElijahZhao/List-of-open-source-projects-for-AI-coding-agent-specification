@@ -158,3 +158,4 @@
 - 2026-10-18 第五轮链接审查：README 内 44 个 GitHub 链接逐一实测，43 个直连 200；awesome-cursorrules-zh 已由 LessUp 转移至 holtwood 名下，已更新为规范地址
 - 2026-10-18 第六轮定向搜索：围绕决策记录 / 可复现性 / AI 使用披露 / 负结果存档 / 去 AI 味 / 秘密扫描六主题实测；新增第 7 节（ADR、MADR、DVC、Aim、showyourwork、claude-devtools、ai-credit、gitleaks、trufflehog）与 REVIEW-TOOLKIT.md；结论：过程产物治理编排、通用去 AI 腔治理、负结果存档确认为开源空白（概念级项目均 <10★ 或停更，如意大利语单语技能 humanizer-it 5★）
 - 2026-10-18 第七轮体系收录：新增《项目审查提示词库.md》《论文模式.md》（审查工作流全量规则，含 P1–P6 信号编号与 T5-a~T5-g 锚点）与 IRON-RULES.md（全局铁律入口：铁律正文复制进全局规则入口后常驻生效，按场景触发加载全量规则）；AGENTS.md 登记第 6 条行为准则。仓库转 Private 后上述文件为工具体系权威副本，变更登记见各文件修订记录
+- 2026-10-18 第八轮方法学核查：以一份库审查与交叉核实协议为参照（轮换视角自审 R1–R7、多 AI 双盲交叉核实、差异仲裁规则、回写落地验证），逐条比对清单内项目后确认——该"对库本身的元层审查与交叉核实"方向在开源生态无即用承接，仅有独立审查代理（superpowers 双阶段审查、pr-review-toolkit）等相邻碎片；结论记入 REVIEW-TOOLKIT.md 空白地图第 5 条，不收录协议本体

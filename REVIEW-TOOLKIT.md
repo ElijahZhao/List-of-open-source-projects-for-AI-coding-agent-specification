@@ -26,6 +26,7 @@
 2. **面向通用文本 / 代码的"去 AI 腔"治理**——现状仅有意大利语单语技能 [humanizer-it](https://github.com/ilyautov/humanizer-it)（5★，52 模式 + 15 硬禁令 + 无依赖扫描器的形态可借鉴）
 3. **负结果 / 失败尝试的系统化存档**——最近邻为 SRE 复盘模板（[dastergon/postmortem-templates](https://github.com/dastergon/postmortem-templates)，1.5k，2023 年后停更）
 4. **"事件发生时间 vs 记录时间"的抢救式素材整理规范**——防止事后追记被虚构成因果链
+5. **针对（提示词 / 知识）库本身的元层审查与交叉核实**——轮换视角自审、多 AI 双盲交叉核实、差异仲裁规则、回写落地验证，均无工具承接；最近邻仅为"让另一个代理独立审查代码 / PR"（superpowers 双阶段审查、pr-review-toolkit），对象是代码而非库内容
 
 > 伦理边界：任何"去 AI 腔"类工作只许用于提升表达质量，不得用于规避 AI 检测或隐瞒应当披露的 AI 使用情况——披露义务永远优先于保密偏好。
 
