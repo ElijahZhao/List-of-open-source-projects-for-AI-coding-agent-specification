@@ -14,7 +14,7 @@
 **新项目 60 秒路径**（智能体初始化项目时按此执行）：
 
 1. 根目录建 `AGENTS.md`（参照 agentsmd/agents.md ⭐），写入安装/测试命令、禁改路径、提交要求
-2. 规格驱动二选一：新项目 `uv tool install specify-cli && specify init <项目名> --ai claude`（spec-kit ⭐）；存量项目 `npm i -g @fission-ai/openspec@latest && openspec init`（OpenSpec ⭐）
+2. 规格驱动二选一：新项目 `uv tool install specify-cli && specify init <项目名> --integration claude-code`（spec-kit ⭐）；存量项目 `npm i -g @fission-ai/openspec@latest && openspec init`（OpenSpec ⭐）
 3. 技能：参照 anthropics/skills ⭐ 模板自建项目专属技能（勿整库克隆）；从 claude-plugins-official ⭐ 安装 1–2 个官方插件（feature-dev、code-review 等）；superpowers ⭐ 一键安装：`/plugin install superpowers@claude-plugins-official`
 4. 配 CI 必需状态检查 + claude-code-security-review ⭐（GitHub Action）安全门禁
 5. 长期维护的项目再加 claude-mem ⭐（`npx claude-mem install`；注意默认走托管记忆服务，本地模式需 opt-in）；跑通最小闭环后，再按下方分类逐步加能力
@@ -138,3 +138,4 @@
 - 任何项目入库前审查：脚本、依赖、网络访问、权限要求、许可证；先在隔离环境试用，再进入生产
 - 2026-10-18 第二轮全网补充检索：经 GitHub 全平台主题搜索新增 16 个推荐项目与 2 条慎用记录（GSD 归档、ECC 待评估）；GitLab 经 API 检索确认该领域无原生项目（相关仓库 star 均 ≤1）；Gitee 存在反爬限制无法有效检索，中文生态已知项目（superpowers-zh、awesome-cursorrules-zh、RIPER-5、system-prompts 中文版）均已收录
 - 2026-10-18 第三轮可用性复核：以"将执行本清单的智能体"视角自查，为 ⭐ 项补齐实测过的可执行命令（specify / openspec / plugin / npx），修正 ⭐ 图例与 claude-mem 适用条件的表述矛盾；核实 claude-mem 当前默认安装走托管记忆服务，已在相应条目标注风险
+- 2026-10-18 第四轮复核：修正 spec-kit 初始化参数为 `--integration claude-code`（旧参数 `--ai` 已废弃，以官方 README 与 integrations 目录为准）；经认证 API 确认 README / AGENTS.md / LICENSE 三个文件均已正确入库
