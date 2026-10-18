@@ -9,15 +9,15 @@
 
 **落地顺序**：最小规则文件 + CI 门禁 → 规格驱动 → 技能与 hooks → 记忆与多智能体。复杂度按需递增，小任务不要套完整流程。
 
-**标记说明**：⭐ = 新项目默认引入的必备项（数量刻意少，保证可执行）；无标记 = 按需选用；"慎用"章节 = 默认不引入。
+**标记说明**：⭐ = 推荐默认引入的必备项（数量刻意少，保证可执行；claude-mem 等个别项带适用条件，见行内说明）；无标记 = 按需选用；"慎用"章节 = 默认不引入。
 
 **新项目 60 秒路径**（智能体初始化项目时按此执行）：
 
 1. 根目录建 `AGENTS.md`（参照 agentsmd/agents.md ⭐），写入安装/测试命令、禁改路径、提交要求
-2. 规格驱动二选一：新项目用 spec-kit ⭐，存量项目用 OpenSpec ⭐
-3. 装 2–3 个官方技能（anthropics/skills ⭐、claude-plugins-official ⭐）+ superpowers ⭐ 工作流
-4. 配 CI 必需状态检查 + claude-code-security-review ⭐ 安全门禁
-5. 长期维护的项目再加 claude-mem ⭐；跑通最小闭环后，再按下方分类逐步加能力
+2. 规格驱动二选一：新项目 `uv tool install specify-cli && specify init <项目名> --ai claude`（spec-kit ⭐）；存量项目 `npm i -g @fission-ai/openspec@latest && openspec init`（OpenSpec ⭐）
+3. 技能：参照 anthropics/skills ⭐ 模板自建项目专属技能（勿整库克隆）；从 claude-plugins-official ⭐ 安装 1–2 个官方插件（feature-dev、code-review 等）；superpowers ⭐ 一键安装：`/plugin install superpowers@claude-plugins-official`
+4. 配 CI 必需状态检查 + claude-code-security-review ⭐（GitHub Action）安全门禁
+5. 长期维护的项目再加 claude-mem ⭐（`npx claude-mem install`；注意默认走托管记忆服务，本地模式需 opt-in）；跑通最小闭环后，再按下方分类逐步加能力
 
 ## 1. 规范层：规则文件标准与模板
 
@@ -36,7 +36,7 @@
 
 方法论与学习参考：
 
-- ⭐必读 [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（26.7k）— 生产级智能体 12 条工程原则，本清单治理思路的理论底座（有中文译版 12-factor-agents-zh）
+- ⭐必读 [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（26.7k）— 生产级智能体 12 条工程原则，本清单治理思路的理论底座（中文译版：[yzfly/12-factor-agents-zh](https://github.com/yzfly/12-factor-agents-zh)）
 - [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)（144.1k）— Cursor、Devin 等真实工具系统提示词合集，学习"成熟工具如何写规范"的最佳参考
 
 ## 2. 流程层 A：规格驱动开发（先写规格再写码）
@@ -56,7 +56,7 @@
 |---|---:|---|
 | ⭐ [anthropics/skills](https://github.com/anthropics/skills) | 181.8k | Anthropic 官方 Agent Skills：规范、模板、示例（文档 / webapp-testing / MCP 等） |
 | ⭐ [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | 41.8k | 官方插件市场：feature-dev、code-review、pr-review-toolkit、security-guidance、hookify |
-| ⭐ [obra/superpowers](https://github.com/obra/superpowers) | 301.3k | 刚性工作流：头脑风暴 → 批准设计 → worktree 隔离 → 计划 → TDD → 双阶段审查；显著降低"直接写码并声称完成"的概率 |
+| ⭐ [obra/superpowers](https://github.com/obra/superpowers) | 301.3k | 刚性工作流：头脑风暴 → 批准设计 → worktree 隔离 → 计划 → TDD → 双阶段审查；显著降低"直接写码并声称完成"的概率。已上架官方插件市场，可一键安装 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 107.9k | 生产级工程技能包：规划 / 测试 / 调试 / 审查 / 安全 / 发布 |
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | 55.9k | Claude Code 综合发现目录：skills / hooks / commands / agents / plugins |
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | 25.8k | 100+ 子智能体角色模板；研究类代理默认只读，最小权限 |
@@ -72,7 +72,7 @@
 
 | 仓库 | Stars（实测） | 用法与建议 |
 |---|---:|---|
-| ⭐ [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 101.4k | 跨会话持久记忆（SQLite/FTS5 + Chroma 混合检索），长期维护的项目必备。注意：自动记忆不是事实源，安全/密钥/客户数据上下文默认排除 |
+| ⭐ [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 101.4k | 跨会话持久记忆，长期维护的项目必备。注意：安装器默认走托管云记忆（30 天试用后回退 Anthropic 套餐），数据敏感团队须选本地/自托管模式（opt-in）；自动记忆不是事实源，安全/密钥/客户数据上下文默认排除 |
 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | 28.2k | AI 驱动任务管理：PRD → 任务 → 依赖 → 执行，适配 Cursor / Roo / Windsurf 等（补充项，原报告遗漏） |
 | Cline memory bank 模式 | — | 见 [cline/cline](https://github.com/cline/cline) 文档：跨工具最普及的项目记忆实践（补充项） |
 | [BloopAI/vibe-kanban](https://github.com/BloopAI/vibe-kanban) | 28.4k | 用看板编排多个编码智能体（Claude Code / Codex 等），git worktree 隔离；比 multica 更适合开发场景 |
@@ -137,3 +137,4 @@
   3. 原报告"27 个项目"系跨类别重复计数，去重后为 21 个；本清单另补充 task-master、ruflo、Cline memory bank 三个缺口项
 - 任何项目入库前审查：脚本、依赖、网络访问、权限要求、许可证；先在隔离环境试用，再进入生产
 - 2026-10-18 第二轮全网补充检索：经 GitHub 全平台主题搜索新增 16 个推荐项目与 2 条慎用记录（GSD 归档、ECC 待评估）；GitLab 经 API 检索确认该领域无原生项目（相关仓库 star 均 ≤1）；Gitee 存在反爬限制无法有效检索，中文生态已知项目（superpowers-zh、awesome-cursorrules-zh、RIPER-5、system-prompts 中文版）均已收录
+- 2026-10-18 第三轮可用性复核：以"将执行本清单的智能体"视角自查，为 ⭐ 项补齐实测过的可执行命令（specify / openspec / plugin / npx），修正 ⭐ 图例与 claude-mem 适用条件的表述矛盾；核实 claude-mem 当前默认安装走托管记忆服务，已在相应条目标注风险
