@@ -17,8 +17,17 @@
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 40.1k | Copilot 官方社区清单：instructions / agents / skills / hooks / workflows，可信度高 |
 | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | 40.9k | Cursor 模板合集。挑短模板改写成项目专属版，勿整包导入 |
 | [LessUp/awesome-cursorrules-zh](https://github.com/LessUp/awesome-cursorrules-zh) | 239 | 中文 Cursor 规则，适合中文团队起步，需项目化修改 |
+| [google-labs-code/design.md](https://github.com/google-labs-code/design.md) | 28.4k | Google 官方 DESIGN.md 格式规范：给智能体的设计系统持久化描述，AGENTS.md 的姊妹规范 |
+| [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) | 122.0k | 知名品牌 DESIGN.md 模板合集，配合 design.md 格式使用，前端项目适用 |
+| [ciembor/agent-rules-books](https://github.com/ciembor/agent-rules-books) | 3.1k | 从 Clean Code、Refactoring、DDD、DDIA 等经典书籍提炼的 AGENTS.md 规则/技能 |
+| [NeekChaw/RIPER-5](https://github.com/NeekChaw/RIPER-5) | 2.6k | 中文圈知名交互模式规范（Cursor Rule），强制"研究 → 计划 → 执行"模式分工 |
 
 规则文件写什么：可执行命令（如 `pnpm --filter @app/api test`）、3–5 条不可协商规则、依赖约束、人工审批边界。不写：项目哲学、通用风格、长篇历史。
+
+方法论与学习参考：
+
+- [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（26.7k）— 生产级智能体 12 条工程原则，本清单治理思路的理论底座（有中文译版 12-factor-agents-zh）
+- [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)（144.1k）— Cursor、Devin 等真实工具系统提示词合集，学习"成熟工具如何写规范"的最佳参考
 
 ## 2. 流程层 A：规格驱动开发（先写规格再写码）
 
@@ -27,6 +36,9 @@
 | [github/spec-kit](https://github.com/github/spec-kit) | 141.7k | GitHub 官方。constitution → specify → clarify → plan → tasks → analyze → implement。适合新项目严格门控。官方明确支持 Claude Code、Copilot、Cursor、Codex CLI、Gemini CLI、Cline、Kiro CLI、opencode、Qwen Code、Zed 等集成 |
 | [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) | 72.3k | 增量修改存量系统首选：spec deltas（ADDED/MODIFIED/REMOVED）→ apply → verify → archive；支持 30+ 工具，跨工具团队适用 |
 | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | 54.3k | 完整敏捷生命周期多角色模拟，适合绿地/复杂系统；上下文与 token 成本高，小任务勿用 |
+| [buildermethods/agent-os](https://github.com/buildermethods/agent-os) | 5.5k | 把代码库标准注入智能体 + 编写更好规格的系统；规格驱动的轻量替代方案 |
+| [Pimzino/spec-workflow-mcp](https://github.com/Pimzino/spec-workflow-mcp) | 4.3k | MCP 规格工作流服务器：需求 → 设计 → 任务，带实时 Web 仪表盘与 VSCode 扩展 |
+| [gemini-cli-extensions/conductor](https://github.com/gemini-cli-extensions/conductor) | 3.8k | Google 官方 Gemini CLI / Antigravity 扩展：规格驱动的 specify → plan → implement |
 
 ## 3. 流程层 B：技能与工作流
 
@@ -39,6 +51,10 @@
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | 55.9k | Claude Code 综合发现目录：skills / hooks / commands / agents / plugins |
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | 25.8k | 100+ 子智能体角色模板；研究类代理默认只读，最小权限 |
 | [jnMetaCode/superpowers-zh](https://github.com/jnMetaCode/superpowers-zh) | 8.3k | Superpowers 中文增强版；先当学习源，抽取核心技能改写为内部版并人工审查后再入生产 |
+| [wshobson/agents](https://github.com/wshobson/agents) | 41.0k | 多 harness 智能体插件市场（Claude Code / Codex / Cursor / Copilot / Antigravity 等），subagents 集合中工程完成度最高 |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | 166.3k | "最懒高级工程师"行为规范技能：反过度工程、YAGNI 约束；MIT，兼容 20 种智能体 |
+| [microsoft/skills](https://github.com/microsoft/skills) | 3.1k | 微软官方：Skills / MCP servers / AGENTS.md，供 SDK 接地的编码智能体使用 |
+| [microsoft/SkillOpt](https://github.com/microsoft/SkillOpt) | 18.5k | 微软研究院：通过轨迹编辑 + 校验门控自动优化 SKILL.md 的研究工具（进阶） |
 
 技能用法：描述是路由入口、正文才是行为定义；只安装少数经人工审查的技能；按版本提交、按季度复核。
 
@@ -49,6 +65,8 @@
 | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 101.4k | 跨会话持久记忆（SQLite/FTS5 + Chroma 混合检索）。注意：自动记忆不是事实源，安全/密钥/客户数据上下文默认排除 |
 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | 28.2k | AI 驱动任务管理：PRD → 任务 → 依赖 → 执行，适配 Cursor / Roo / Windsurf 等（补充项，原报告遗漏） |
 | Cline memory bank 模式 | — | 见 [cline/cline](https://github.com/cline/cline) 文档：跨工具最普及的项目记忆实践（补充项） |
+| [BloopAI/vibe-kanban](https://github.com/BloopAI/vibe-kanban) | 28.4k | 用看板编排多个编码智能体（Claude Code / Codex 等），git worktree 隔离；比 multica 更适合开发场景 |
+| [MrLesk/Backlog.md](https://github.com/MrLesk/Backlog.md) | 7.1k | Git 原生的人机协作任务管理：纯 Markdown、无平台锁定、可进版本控制 |
 
 ## 5. 校验层：治理与门禁（确定性约束在模型之外）
 
@@ -57,6 +75,7 @@
 | [microsoft/agent-governance-toolkit](https://github.com/microsoft/agent-governance-toolkit) | 6.4k | 策略执行 / 零信任身份 / 沙箱 / SRE / 合规映射，多语言 SDK。Public Preview：采用前验证策略加载与失败默认行为；不能替代 Secret 扫描与权限控制 |
 | Claude Code hooks（机制） | — | 官方文档：编辑后自动格式化、提交前 lint、security-guidance 监控文件编辑、hookify 自定义规则 |
 | CI 必需状态检查 | — | lint、类型检查、单元测试、构建、依赖审计、Secret 扫描设为必需检查；受保护分支 + CODEOWNERS + 双人审批 |
+| [anthropics/claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | 6.4k | Anthropic 官方安全审查 GitHub Action：AI 分析代码变更中的安全漏洞并过滤误报，接入 CI 即得自动安全门禁 |
 
 ## 6. 多智能体编排（进阶）
 
@@ -75,6 +94,8 @@
 | [vijaythecoder/awesome-claude-agents](https://github.com/vijaythecoder/awesome-claude-agents) | 4.4k | 最后提交 2025-10-30（约一年前）；作者标注实验性，高 token 消耗 |
 | [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | 15.5k | 2026-04 后无显著提交；仅作参考 |
 | [Lay4U/awesome-ai-rules](https://github.com/Lay4U/awesome-ai-rules) | 5 | 已停滞 |
+| [gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done) | 64.3k | 原仓库已归档；活跃延续为 [open-gsd/gsd-pi](https://github.com/open-gsd/gsd-pi)（1.3k），选型前先确认维护分支 |
+| [affaan-m/ECC](https://github.com/affaan-m/ECC) | 282.6k | 热度极高的"智能体 harness OS"，但营销包装重、核心机制未经核验，暂不推荐入生产 |
 
 ## 按场景选型速查
 
@@ -105,3 +126,4 @@
   2. Spec Kit 官方 integrations 文档明确支持 Codex CLI 等 10+ 集成（原报告"对 Codex CLI 的支持有限"不成立）
   3. 原报告"27 个项目"系跨类别重复计数，去重后为 21 个；本清单另补充 task-master、ruflo、Cline memory bank 三个缺口项
 - 任何项目入库前审查：脚本、依赖、网络访问、权限要求、许可证；先在隔离环境试用，再进入生产
+- 2026-10-18 第二轮全网补充检索：经 GitHub 全平台主题搜索新增 16 个推荐项目与 2 条慎用记录（GSD 归档、ECC 待评估）；GitLab 经 API 检索确认该领域无原生项目（相关仓库 star 均 ≤1）；Gitee 存在反爬限制无法有效检索，中文生态已知项目（superpowers-zh、awesome-cursorrules-zh、RIPER-5、system-prompts 中文版）均已收录
