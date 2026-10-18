@@ -157,3 +157,4 @@
 - 2026-10-18 第四轮复核：修正 spec-kit 初始化参数为 `--integration claude-code`（旧参数 `--ai` 已废弃，以官方 README 与 integrations 目录为准）；经认证 API 确认 README / AGENTS.md / LICENSE 三个文件均已正确入库
 - 2026-10-18 第五轮链接审查：README 内 44 个 GitHub 链接逐一实测，43 个直连 200；awesome-cursorrules-zh 已由 LessUp 转移至 holtwood 名下，已更新为规范地址
 - 2026-10-18 第六轮定向搜索：围绕决策记录 / 可复现性 / AI 使用披露 / 负结果存档 / 去 AI 味 / 秘密扫描六主题实测；新增第 7 节（ADR、MADR、DVC、Aim、showyourwork、claude-devtools、ai-credit、gitleaks、trufflehog）与 REVIEW-TOOLKIT.md；结论：过程产物治理编排、通用去 AI 腔治理、负结果存档确认为开源空白（概念级项目均 <10★ 或停更，如意大利语单语技能 humanizer-it 5★）
+- 2026-10-18 第七轮体系收录：新增《项目审查提示词库.md》《论文模式.md》（审查工作流全量规则，含 P1–P6 信号编号与 T5-a~T5-g 锚点）与 IRON-RULES.md（全局铁律入口：铁律正文复制进全局规则入口后常驻生效，按场景触发加载全量规则）；AGENTS.md 登记第 6 条行为准则。仓库转 Private 后上述文件为工具体系权威副本，变更登记见各文件修订记录
