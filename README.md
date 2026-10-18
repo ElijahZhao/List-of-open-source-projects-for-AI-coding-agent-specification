@@ -9,11 +9,21 @@
 
 **落地顺序**：最小规则文件 + CI 门禁 → 规格驱动 → 技能与 hooks → 记忆与多智能体。复杂度按需递增，小任务不要套完整流程。
 
+**标记说明**：⭐ = 新项目默认引入的必备项（数量刻意少，保证可执行）；无标记 = 按需选用；"慎用"章节 = 默认不引入。
+
+**新项目 60 秒路径**（智能体初始化项目时按此执行）：
+
+1. 根目录建 `AGENTS.md`（参照 agentsmd/agents.md ⭐），写入安装/测试命令、禁改路径、提交要求
+2. 规格驱动二选一：新项目用 spec-kit ⭐，存量项目用 OpenSpec ⭐
+3. 装 2–3 个官方技能（anthropics/skills ⭐、claude-plugins-official ⭐）+ superpowers ⭐ 工作流
+4. 配 CI 必需状态检查 + claude-code-security-review ⭐ 安全门禁
+5. 长期维护的项目再加 claude-mem ⭐；跑通最小闭环后，再按下方分类逐步加能力
+
 ## 1. 规范层：规则文件标准与模板
 
 | 仓库 | Stars（实测） | 用法与建议 |
 |---|---:|---|
-| [agentsmd/agents.md](https://github.com/agentsmd/agents.md) | 25.0k | 规则文件事实标准："给智能体的 README"。写安装/测试命令、架构边界、禁改路径、提交要求；支持子目录就近覆盖。**每个项目从这里开始。** |
+| ⭐ [agentsmd/agents.md](https://github.com/agentsmd/agents.md) | 25.0k | 规则文件事实标准："给智能体的 README"。写安装/测试命令、架构边界、禁改路径、提交要求；支持子目录就近覆盖。**每个项目从这里开始。** |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 40.1k | Copilot 官方社区清单：instructions / agents / skills / hooks / workflows，可信度高 |
 | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | 40.9k | Cursor 模板合集。挑短模板改写成项目专属版，勿整包导入 |
 | [LessUp/awesome-cursorrules-zh](https://github.com/LessUp/awesome-cursorrules-zh) | 239 | 中文 Cursor 规则，适合中文团队起步，需项目化修改 |
@@ -26,15 +36,15 @@
 
 方法论与学习参考：
 
-- [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（26.7k）— 生产级智能体 12 条工程原则，本清单治理思路的理论底座（有中文译版 12-factor-agents-zh）
+- ⭐必读 [humanlayer/12-factor-agents](https://github.com/humanlayer/12-factor-agents)（26.7k）— 生产级智能体 12 条工程原则，本清单治理思路的理论底座（有中文译版 12-factor-agents-zh）
 - [x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)（144.1k）— Cursor、Devin 等真实工具系统提示词合集，学习"成熟工具如何写规范"的最佳参考
 
 ## 2. 流程层 A：规格驱动开发（先写规格再写码）
 
 | 仓库 | Stars（实测） | 用法与建议 |
 |---|---:|---|
-| [github/spec-kit](https://github.com/github/spec-kit) | 141.7k | GitHub 官方。constitution → specify → clarify → plan → tasks → analyze → implement。适合新项目严格门控。官方明确支持 Claude Code、Copilot、Cursor、Codex CLI、Gemini CLI、Cline、Kiro CLI、opencode、Qwen Code、Zed 等集成 |
-| [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) | 72.3k | 增量修改存量系统首选：spec deltas（ADDED/MODIFIED/REMOVED）→ apply → verify → archive；支持 30+ 工具，跨工具团队适用 |
+| ⭐ [github/spec-kit](https://github.com/github/spec-kit) | 141.7k | GitHub 官方。constitution → specify → clarify → plan → tasks → analyze → implement。适合新项目严格门控。官方明确支持 Claude Code、Copilot、Cursor、Codex CLI、Gemini CLI、Cline、Kiro CLI、opencode、Qwen Code、Zed 等集成 |
+| ⭐ [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec) | 72.3k | 增量修改存量系统首选：spec deltas（ADDED/MODIFIED/REMOVED）→ apply → verify → archive；支持 30+ 工具，跨工具团队适用。与新项目用 spec-kit 二选一 |
 | [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) | 54.3k | 完整敏捷生命周期多角色模拟，适合绿地/复杂系统；上下文与 token 成本高，小任务勿用 |
 | [buildermethods/agent-os](https://github.com/buildermethods/agent-os) | 5.5k | 把代码库标准注入智能体 + 编写更好规格的系统；规格驱动的轻量替代方案 |
 | [Pimzino/spec-workflow-mcp](https://github.com/Pimzino/spec-workflow-mcp) | 4.3k | MCP 规格工作流服务器：需求 → 设计 → 任务，带实时 Web 仪表盘与 VSCode 扩展 |
@@ -44,9 +54,9 @@
 
 | 仓库 | Stars（实测） | 用法与建议 |
 |---|---:|---|
-| [anthropics/skills](https://github.com/anthropics/skills) | 181.8k | Anthropic 官方 Agent Skills：规范、模板、示例（文档 / webapp-testing / MCP 等） |
-| [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | 41.8k | 官方插件市场：feature-dev、code-review、pr-review-toolkit、security-guidance、hookify |
-| [obra/superpowers](https://github.com/obra/superpowers) | 301.3k | 刚性工作流：头脑风暴 → 批准设计 → worktree 隔离 → 计划 → TDD → 双阶段审查；显著降低"直接写码并声称完成"的概率 |
+| ⭐ [anthropics/skills](https://github.com/anthropics/skills) | 181.8k | Anthropic 官方 Agent Skills：规范、模板、示例（文档 / webapp-testing / MCP 等） |
+| ⭐ [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) | 41.8k | 官方插件市场：feature-dev、code-review、pr-review-toolkit、security-guidance、hookify |
+| ⭐ [obra/superpowers](https://github.com/obra/superpowers) | 301.3k | 刚性工作流：头脑风暴 → 批准设计 → worktree 隔离 → 计划 → TDD → 双阶段审查；显著降低"直接写码并声称完成"的概率 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 107.9k | 生产级工程技能包：规划 / 测试 / 调试 / 审查 / 安全 / 发布 |
 | [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | 55.9k | Claude Code 综合发现目录：skills / hooks / commands / agents / plugins |
 | [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | 25.8k | 100+ 子智能体角色模板；研究类代理默认只读，最小权限 |
@@ -62,7 +72,7 @@
 
 | 仓库 | Stars（实测） | 用法与建议 |
 |---|---:|---|
-| [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 101.4k | 跨会话持久记忆（SQLite/FTS5 + Chroma 混合检索）。注意：自动记忆不是事实源，安全/密钥/客户数据上下文默认排除 |
+| ⭐ [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | 101.4k | 跨会话持久记忆（SQLite/FTS5 + Chroma 混合检索），长期维护的项目必备。注意：自动记忆不是事实源，安全/密钥/客户数据上下文默认排除 |
 | [eyaltoledano/claude-task-master](https://github.com/eyaltoledano/claude-task-master) | 28.2k | AI 驱动任务管理：PRD → 任务 → 依赖 → 执行，适配 Cursor / Roo / Windsurf 等（补充项，原报告遗漏） |
 | Cline memory bank 模式 | — | 见 [cline/cline](https://github.com/cline/cline) 文档：跨工具最普及的项目记忆实践（补充项） |
 | [BloopAI/vibe-kanban](https://github.com/BloopAI/vibe-kanban) | 28.4k | 用看板编排多个编码智能体（Claude Code / Codex 等），git worktree 隔离；比 multica 更适合开发场景 |
@@ -75,7 +85,7 @@
 | [microsoft/agent-governance-toolkit](https://github.com/microsoft/agent-governance-toolkit) | 6.4k | 策略执行 / 零信任身份 / 沙箱 / SRE / 合规映射，多语言 SDK。Public Preview：采用前验证策略加载与失败默认行为；不能替代 Secret 扫描与权限控制 |
 | Claude Code hooks（机制） | — | 官方文档：编辑后自动格式化、提交前 lint、security-guidance 监控文件编辑、hookify 自定义规则 |
 | CI 必需状态检查 | — | lint、类型检查、单元测试、构建、依赖审计、Secret 扫描设为必需检查；受保护分支 + CODEOWNERS + 双人审批 |
-| [anthropics/claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | 6.4k | Anthropic 官方安全审查 GitHub Action：AI 分析代码变更中的安全漏洞并过滤误报，接入 CI 即得自动安全门禁 |
+| ⭐ [anthropics/claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | 6.4k | Anthropic 官方安全审查 GitHub Action：AI 分析代码变更中的安全漏洞并过滤误报，接入 CI 即得自动安全门禁 |
 
 ## 6. 多智能体编排（进阶）
 
