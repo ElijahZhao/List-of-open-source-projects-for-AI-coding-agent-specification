@@ -11,6 +11,8 @@
 - Claude Code：`~/.claude/CLAUDE.md`（用户级记忆，所有项目生效）
 - 其他智能体工具：对应用户级记忆 / 全局规则 / User Rules 入口
 
+> 各工具的入口对照、生效验证方法、无全局入口工具的兜底与常见坑，见 [INSTALL.md](INSTALL.md)。
+
 ## 铁律正文（复制以下整段）
 
 ```text
