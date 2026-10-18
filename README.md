@@ -26,7 +26,7 @@
 | ⭐ [agentsmd/agents.md](https://github.com/agentsmd/agents.md) | 25.0k | 规则文件事实标准："给智能体的 README"。写安装/测试命令、架构边界、禁改路径、提交要求；支持子目录就近覆盖。**每个项目从这里开始。** |
 | [github/awesome-copilot](https://github.com/github/awesome-copilot) | 40.1k | Copilot 官方社区清单：instructions / agents / skills / hooks / workflows，可信度高 |
 | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | 40.9k | Cursor 模板合集。挑短模板改写成项目专属版，勿整包导入 |
-| [LessUp/awesome-cursorrules-zh](https://github.com/LessUp/awesome-cursorrules-zh) | 239 | 中文 Cursor 规则，适合中文团队起步，需项目化修改 |
+| [holtwood/awesome-cursorrules-zh](https://github.com/holtwood/awesome-cursorrules-zh) | 239 | 中文 Cursor 规则，适合中文团队起步，需项目化修改（原 LessUp 名下，已转移） |
 | [google-labs-code/design.md](https://github.com/google-labs-code/design.md) | 28.4k | Google 官方 DESIGN.md 格式规范：给智能体的设计系统持久化描述，AGENTS.md 的姊妹规范 |
 | [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md) | 122.0k | 知名品牌 DESIGN.md 模板合集，配合 design.md 格式使用，前端项目适用 |
 | [ciembor/agent-rules-books](https://github.com/ciembor/agent-rules-books) | 3.1k | 从 Clean Code、Refactoring、DDD、DDIA 等经典书籍提炼的 AGENTS.md 规则/技能 |
@@ -139,3 +139,4 @@
 - 2026-10-18 第二轮全网补充检索：经 GitHub 全平台主题搜索新增 16 个推荐项目与 2 条慎用记录（GSD 归档、ECC 待评估）；GitLab 经 API 检索确认该领域无原生项目（相关仓库 star 均 ≤1）；Gitee 存在反爬限制无法有效检索，中文生态已知项目（superpowers-zh、awesome-cursorrules-zh、RIPER-5、system-prompts 中文版）均已收录
 - 2026-10-18 第三轮可用性复核：以"将执行本清单的智能体"视角自查，为 ⭐ 项补齐实测过的可执行命令（specify / openspec / plugin / npx），修正 ⭐ 图例与 claude-mem 适用条件的表述矛盾；核实 claude-mem 当前默认安装走托管记忆服务，已在相应条目标注风险
 - 2026-10-18 第四轮复核：修正 spec-kit 初始化参数为 `--integration claude-code`（旧参数 `--ai` 已废弃，以官方 README 与 integrations 目录为准）；经认证 API 确认 README / AGENTS.md / LICENSE 三个文件均已正确入库
+- 2026-10-18 第五轮链接审查：README 内 44 个 GitHub 链接逐一实测，43 个直连 200；awesome-cursorrules-zh 已由 LessUp 转移至 holtwood 名下，已更新为规范地址
