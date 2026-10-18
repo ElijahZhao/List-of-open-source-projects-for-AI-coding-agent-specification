@@ -16,7 +16,7 @@
 1. 根目录建 `AGENTS.md`（参照 agentsmd/agents.md ⭐），写入安装/测试命令、禁改路径、提交要求
 2. 规格驱动二选一：新项目 `uv tool install specify-cli && specify init <项目名> --integration claude-code`（spec-kit ⭐）；存量项目 `npm i -g @fission-ai/openspec@latest && openspec init`（OpenSpec ⭐）
 3. 技能：参照 anthropics/skills ⭐ 模板自建项目专属技能（勿整库克隆）；从 claude-plugins-official ⭐ 安装 1–2 个官方插件（feature-dev、code-review 等）；superpowers ⭐ 一键安装：`/plugin install superpowers@claude-plugins-official`
-4. 配 CI 必需状态检查 + claude-code-security-review ⭐（GitHub Action）安全门禁
+4. 配 CI 必需状态检查 + gitleaks 秘密扫描 + claude-code-security-review ⭐（GitHub Action）安全门禁
 5. 长期维护的项目再加 claude-mem ⭐（`npx claude-mem install`；注意默认走托管记忆服务，本地模式需 opt-in）；跑通最小闭环后，再按下方分类逐步加能力
 
 ## 1. 规范层：规则文件标准与模板
@@ -95,6 +95,22 @@
 
 建议：先采用"一个实现代理 + 一个独立审查代理"的双代理结构；并行审查的输入来源必须独立；每个角色最小权限；设置最大重试、超时与人工检查点。
 
+## 7. 决策记录、实验记录与发布前扫描（2026-10-18 定向搜索新增）
+
+| 仓库 | Stars（实测） | 用法与建议 |
+|---|---:|---|
+| [architecture-decision-record/architecture-decision-record](https://github.com/architecture-decision-record/architecture-decision-record) | 17.2k | ADR（架构决策记录）示例与模板权威库：把"选了什么、为什么、被否方案输在哪"落成版本化文档；重大技术决策必记 |
+| [adr/madr](https://github.com/adr/madr) | 2.6k | MADR 格式标准（Markdown ADR），决策台账的落地模板 |
+| [treeverse/dvc](https://github.com/treeverse/dvc)（原 iterative/dvc） | 15.9k | 数据与实验版本管理；对个人小项目偏重，需要实验可复现时引入 |
+| [aimhubio/aim](https://github.com/aimhubio/aim) | 6.3k | 轻量实验追踪：超参、指标、环境；个人项目先于 DVC 考虑 |
+| [showyourwork/showyourwork](https://github.com/showyourwork/showyourwork) | 665 | 可复现科研文章工作流（GitHub + 容器 + 数据管线），科研出论文场景适用 |
+| [matt1398/claude-devtools](https://github.com/matt1398/claude-devtools) | 4.0k | Claude Code 会话日志 / 工具调用 / token 观测面板，AI 使用披露的观测层 |
+| [debugtheworldbot/ai-credit](https://github.com/debugtheworldbot/ai-credit) | 83 | CLI 追踪 AI 助手在代码库中的贡献归属（新兴项目，先试用观察再依赖） |
+| [gitleaks/gitleaks](https://github.com/gitleaks/gitleaks) | 30.1k | 秘密扫描事实标准，pre-commit + CI 双挂 |
+| [trufflesecurity/trufflehog](https://github.com/trufflesecurity/trufflehog) | 28.6k | 凭证发现 + 验证，覆盖 800+ 数据源 |
+
+定向搜索结论：决策记录与可复现性已有成熟生态（本节）；**过程产物治理编排、通用"去 AI 腔"治理、负结果存档**在开源生态确认为空白，需自定义提示词承担，见 [REVIEW-TOOLKIT.md](REVIEW-TOOLKIT.md)。
+
 ## 慎用 / 不建议直接入生产
 
 | 仓库 | Stars（实测） | 原因 |
@@ -140,3 +156,4 @@
 - 2026-10-18 第三轮可用性复核：以"将执行本清单的智能体"视角自查，为 ⭐ 项补齐实测过的可执行命令（specify / openspec / plugin / npx），修正 ⭐ 图例与 claude-mem 适用条件的表述矛盾；核实 claude-mem 当前默认安装走托管记忆服务，已在相应条目标注风险
 - 2026-10-18 第四轮复核：修正 spec-kit 初始化参数为 `--integration claude-code`（旧参数 `--ai` 已废弃，以官方 README 与 integrations 目录为准）；经认证 API 确认 README / AGENTS.md / LICENSE 三个文件均已正确入库
 - 2026-10-18 第五轮链接审查：README 内 44 个 GitHub 链接逐一实测，43 个直连 200；awesome-cursorrules-zh 已由 LessUp 转移至 holtwood 名下，已更新为规范地址
+- 2026-10-18 第六轮定向搜索：围绕决策记录 / 可复现性 / AI 使用披露 / 负结果存档 / 去 AI 味 / 秘密扫描六主题实测；新增第 7 节（ADR、MADR、DVC、Aim、showyourwork、claude-devtools、ai-credit、gitleaks、trufflehog）与 REVIEW-TOOLKIT.md；结论：过程产物治理编排、通用去 AI 腔治理、负结果存档确认为开源空白（概念级项目均 <10★ 或停更，如意大利语单语技能 humanizer-it 5★）
